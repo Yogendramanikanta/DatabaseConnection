@@ -1,28 +1,68 @@
 package com.DatabaseProject.service.impl;
 
-import java.net.MulticastSocket;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import org.apache.naming.java.javaURLContextFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import com.DatabaseProject.repository.SchemaRepo;
+import com.DatabaseProject.Entity.DatabaseConnectionProperties;
 //import com.DatabaseProject.repository.SchemaRepo;
 import com.DatabaseProject.service.DataBaseservice;
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.ObjectMapper;
 @Service
 public class DataBaseServiceImpl implements DataBaseservice {
 
 	
-	@Autowired
-	SchemaRepo repo;
+	Statement statement;
+	public static DatabaseConnectionProperties propertices() {
+		DatabaseConnectionProperties propertices = new DatabaseConnectionProperties();
+		propertices.setDatabaseName("postgres");
+		propertices.setHost("localhost");
+		propertices.setPassword("root");
+		propertices.setPort("5432");
+		propertices.setUsername("postgres");
+		return propertices;
+		
+	}
+	
+	@Override
+	public List<String> featchTheDatabaseNames(){
+		
+		List<String> listOfSchemas = new ArrayList<String>();
+		try {
+		Statement statement = JDBCConnection(propertices());
+		String query = " SELECT datname FROM pg_database where datname not in ('template1','template0')";
+			ResultSet rs=statement.executeQuery(query);
+			while (rs.next()) {
+				listOfSchemas.add(rs.getString(1));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return listOfSchemas;
+	}
 	
 	@Override
 	public List<String> featchTheScemesList() {
-		List<String> listOfSchems =repo.featchTheSchemas();
-		System.out.println(listOfSchems);
-		return listOfSchems;
+		List<String> listOfSchemas = new ArrayList<String>();
+		try {
+		Statement statement = JDBCConnection(propertices());
+		String query = "SELECT schema_name FROM information_schema.schemata where schema_name not in ('information_schema','pg_toast','pg_catalog')";
+			ResultSet rs=statement.executeQuery(query);
+			while (rs.next()) {
+				listOfSchemas.add(rs.getString(1));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return listOfSchemas;
 	}
 	
 	
