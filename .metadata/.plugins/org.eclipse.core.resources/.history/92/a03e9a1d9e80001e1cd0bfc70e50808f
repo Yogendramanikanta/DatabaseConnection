@@ -1,0 +1,14 @@
+//package com.DatabaseProject.repository;
+//
+//import java.util.List;
+//
+//import org.springframework.data.jpa.repository.Query;
+//import org.springframework.stereotype.Repository;
+//
+//@Repository
+//public interface SchemaRepo {
+//	
+//	@Query(value = "SELECT schema_name FROM information_schema.schemata where schema_name not in ('information_schema','pg_toast','pg_catalog')", nativeQuery = true)
+//	public List<String> featchTheSchemas();
+//
+//}

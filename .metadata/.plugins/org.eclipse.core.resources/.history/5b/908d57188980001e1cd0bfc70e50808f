@@ -1,0 +1,5 @@
+package com.DatabaseProject.service.impl;
+
+public interface DataBaseService {
+
+}

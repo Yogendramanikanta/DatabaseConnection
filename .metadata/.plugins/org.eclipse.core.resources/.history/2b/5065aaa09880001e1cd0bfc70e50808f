@@ -1,0 +1,5 @@
+package com.DatabaseProject.DTO;
+
+public class ListOfServices {
+
+}

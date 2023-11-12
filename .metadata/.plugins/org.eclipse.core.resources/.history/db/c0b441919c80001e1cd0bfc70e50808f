@@ -1,0 +1,19 @@
+package com.DatabaseProject;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+
+@SpringBootApplication
+@ComponentScan(basePackages = "com.DatabaseProject.repository")
+
+public class DatabaseProjectApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(DatabaseProjectApplication.class, args);
+		ApplicationPropertices applicationPropertices= new ApplicationPropertices();
+		applicationPropertices.dataSource(null);
+		System.out.println("*****************************Start the DataBase Application****************************************");
+	}
+
+}

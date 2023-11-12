@@ -1,0 +1,32 @@
+package com.DatabaseProject.service.impl;
+
+import java.net.MulticastSocket;
+import java.util.List;
+
+import org.apache.naming.java.javaURLContextFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import com.DatabaseProject.repository.SchemaRepo;
+import com.DatabaseProject.service.DataBaseservice;
+
+public class DataBaseServiceImpl implements DataBaseservice {
+
+	@Autowired
+	SchemaRepo schemaRepo;
+	@Override
+	public String featchTheScemesList() {
+//		String Query = "SELECT schema_name\r\n"
+//				+ "FROM information_schema.schemata where schema_name not in ('information_schema','pg_toast','pg_catalog') ;\r\n"
+//				+ "";
+//		List<String> listOfServicves = template.execute(Query);
+		List<String> listOfSchems = schemaRepo.featchTheSchemas();
+		System.out.println(listOfSchems);
+		
+		
+		return null;
+	}
+	
+	
+
+}

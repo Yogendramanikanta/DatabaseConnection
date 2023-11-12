@@ -1,0 +1,18 @@
+package com.DatabaseProject.service.impl;
+
+import com.DatabaseProject.service.DataBaseservice;
+
+public class DataBaseServiceImpl implements DataBaseservice {
+
+	@Override
+	public String featchTheScemesList() {
+		String Query = "SELECT schema_name\r\n"
+				+ "FROM information_schema.schemata where schema_name not in ('information_schema','pg_toast','pg_catalog') ;\r\n"
+				+ "";
+		
+		return null;
+	}
+	
+	
+
+}

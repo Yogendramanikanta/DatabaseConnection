@@ -1,0 +1,26 @@
+package com.DatabaseProject;
+
+import java.sql.*;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+public class JDBCConnection {
+
+	public Statement Connection() {
+		Statement stmt =null;
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres");
+			stmt=connection.createStatement();
+			
+		}catch (Exception e) {
+			e.getStackTrace();
+			System.out.println(e.getMessage());
+		}
+		return stmt;
+		
+	}
+
+}

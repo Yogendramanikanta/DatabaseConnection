@@ -1,0 +1,5 @@
+package com.DatabaseProject.repository;
+
+public interface SchemaRepo {
+
+}
