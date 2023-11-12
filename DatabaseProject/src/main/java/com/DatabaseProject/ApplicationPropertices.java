@@ -6,10 +6,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+import com.DatabaseProject.Entity.DatabaseConnectionProperties;
 import com.DatabaseProject.Entity.DatabaseContextHolder;
 
 @Configuration
-
 public class ApplicationPropertices {
 	
 	@Bean
@@ -17,20 +17,10 @@ public class ApplicationPropertices {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
 //        dataSource.setUrl("jdbc:postgresql://" + properties.getHost() + ":"+properties.getPort()+"/"+properties.getDatabaseName());
 //        dataSource.setUsername(properties.getUsername());
-//        dataSource.setPassword(properties.getPassword());
-        
-        DatabaseContextHolder.setDatabaseType("postgres");
-        
-        
-        if(properties.getDatabaseName() == null) {
+//        dataSource.setPassword(properties.getPassword());        
         dataSource.setUrl("jdbc:postgresql://" +"localhost"+ ":"+"5432"+"/Manikanta");
         dataSource.setUsername("postgres");
-        dataSource.setPassword("root");}
-        else {
-             createDataSource("jdbc:postgresql://localhost:5432/postgrs", "postgres", "root");
-
-        }
-       
+        dataSource.setPassword("root");
         return dataSource;
     }
 	

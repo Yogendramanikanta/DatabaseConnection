@@ -1,4 +1,4 @@
-package com.DatabaseProject;
+package com.DatabaseProject.Entity;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -8,17 +8,17 @@ import org.springframework.stereotype.Component;
 //@ConfigurationProperties(prefix = "database")
 public class DatabaseConnectionProperties  {
 	
-	 private int port;
+	 private String port;
 	    private String url;
 	    private String username;
 	    private String password;
 	    private String host;
 	    private String databaseName;
 	    
-		public int getPort() {
+		public String getPort() {
 			return port;
 		}
-		public void setPort(int port) {
+		public void setPort(String port) {
 			this.port = port;
 		}
 		public String getUrl() {
