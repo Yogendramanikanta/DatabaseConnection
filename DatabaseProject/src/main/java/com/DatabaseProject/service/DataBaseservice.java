@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.List;
-import java.util.Map;
-
 import com.DatabaseProject.Entity.DatabaseConnectionProperties;
 
 public interface DataBaseservice {
@@ -15,7 +13,9 @@ public interface DataBaseservice {
 		try {
 			Class.forName("org.postgresql.Driver");
 			Connection connection = DriverManager
-					.getConnection("jdbc:postgresql://"+propertices.getHost()+":"+propertices.getPort()+"/"+propertices.getDatabaseName(),
+					.getConnection(
+							"jdbc:postgresql://" + propertices.getHost() + ":" + propertices.getPort() + "/"
+									+ propertices.getDatabaseName(),
 							propertices.getUsername(), propertices.getPassword());
 			stmt = connection.createStatement();
 		} catch (Exception e) {
@@ -26,9 +26,6 @@ public interface DataBaseservice {
 	}
 
 	public List<String> featchTheDatabaseNames();
-	
-	public  List<String> featchTheScemesList();
-	
-	
+	public List<String> featchTheScemesList();
 
 }
